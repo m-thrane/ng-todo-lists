@@ -1,0 +1,22 @@
+<div class="container">
+  <ul class="reset lists" >
+    <li
+      class="clicky lists__item"
+      *ngFor="let list of lists"
+      [routerLink]="list.title"
+    >
+      {{ list.title }} <br>
+      - Todoes
+    </li>
+  </ul>
+
+  <form class="mt-3" (ngSubmit)="addList(listInput.value)" novalidate>
+    <input
+      #listInput
+      class="list-input"
+      type="text"
+      placeholder="New List"
+      required
+    />
+  </form>
+</div>

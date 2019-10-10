@@ -2,10 +2,12 @@ import {
   Component,
   ViewChild,
   ElementRef,
+  OnInit,
   ChangeDetectionStrategy
 } from '@angular/core';
 import { Todo } from 'src/app/models/Todo';
 import { immutableSplice } from 'src/utils/array';
+import { AppService } from 'src/app/app.service';
 
 @Component({
   selector: 'app-todo-list',
@@ -17,6 +19,13 @@ export class TodoListComponent {
   @ViewChild('todoInput', { static: false }) todoInput: ElementRef<
     HTMLInputElement
   >;
+
+  constructor(private appService: AppService) { }
+
+  ngOnInit() {
+    this.appService.setTitle('Todo list name');
+  }
+
   private todoList: Todo[] = [];
 
   get todos(): Todo[] {
@@ -39,4 +48,5 @@ export class TodoListComponent {
       todo
     );
   }
+
 }
